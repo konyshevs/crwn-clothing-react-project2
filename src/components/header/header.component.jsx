@@ -1,6 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./header.styles.scss";
+import {
+  HeaderContainer,
+  OptionsContainer,
+  OptionLink,
+  LogoContainer,
+} from "./header.styles";
+
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { createStructuredSelector } from "reselect";
 
@@ -14,30 +19,24 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 
 const Header = ({ currentUser, hidden }) => (
-  <div className="header">
-    <Link to="/">
+  <HeaderContainer>
+    <LogoContainer to="/">
       <Logo className="logo" />
-    </Link>
-    <div className="options">
-      <Link to="/shop" className="option">
-        SHOP
-      </Link>
-      <Link to="/contact" className="option">
-        CONTACT
-      </Link>
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/contact">CONTACT</OptionLink>
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <OptionLink as="div" onClick={() => auth.signOut()}>
           LOG OUT
-        </div>
+        </OptionLink>
       ) : (
-        <Link to="/signin" className="option">
-          SIGN IN
-        </Link>
+        <OptionLink to="/signin">SIGN IN</OptionLink>
       )}
       <CartIcon />
-    </div>
+    </OptionsContainer>
     {hidden ? null : <CartDropdown />}
-  </div>
+  </HeaderContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
