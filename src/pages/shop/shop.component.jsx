@@ -25,7 +25,6 @@ const ShopPage = ({
   // conponent did mount
   useEffect(() => {
     fetchCollectionsStartAsync();
-    isCollectionsLoaded = selectIsCollectionsIsLoaded;
   }, []);
 
   return (
