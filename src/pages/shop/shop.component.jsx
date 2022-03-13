@@ -25,7 +25,7 @@ const ShopPage = ({
   // conponent did mount
   useEffect(() => {
     fetchCollectionsStartAsync();
-  }, []);
+  }, [fetchCollectionsStartAsync]);
 
   return (
     <div className="shop-page">
